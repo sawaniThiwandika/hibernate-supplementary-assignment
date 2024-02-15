@@ -50,4 +50,12 @@ public class AuthorDaoImpl implements AuthorDao {
         return list;
     }
 
+    @Override
+    public List<Author> getAuthorsMoreThanAverageBooks(Session session) {
+       // String hql = "SELECT a FROM Author a JOIN a.books b GROUP BY a HAVING COUNT(b.id) > (SELECT AVG(COUNT(b.id)) FROM Author a JOIN a.books b)";
+       String hql="SELECT a FROM Author a JOIN a.books b GROUP BY a.id  HAVING COUNT(b.id) > (SELECT AVG(bookCount) FROM (SELECT COUNT(b2.id) AS bookCount FROM Author a2 JOIN a2.books b2 GROUP BY a2) AS subquery)";
+        Query<Author> query = session.createQuery(hql, Author.class);
+        return  query.getResultList();
+    }
+
 }

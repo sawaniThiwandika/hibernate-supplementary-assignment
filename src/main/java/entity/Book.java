@@ -17,7 +17,7 @@ public class Book {
     private int id;
 
     @ManyToOne Author author;
-    @JoinColumn (name = "author_id")
+    @JoinColumn (name = "author_id")// SPECIFY THE FOREIGN KEY OF Book ENTITY(In this, the foreign key column name of book entity is author_id)
     private String title;
     private int publicationYear;
     private double price;

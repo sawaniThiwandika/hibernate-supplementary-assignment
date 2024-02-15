@@ -111,13 +111,22 @@ public class MainFormController {
 
     public void initialize() throws SQLException {
 
-       colCount.setVisible(false);
+        colCount.setVisible(false);
         setCellValueFactory();
         setComboBoxValues();
         setTableValues();
         double averagePrice = bookBo.getAveragePrice();
         labelPrice.setText(String.valueOf(averagePrice));
+        printAuthorsWhoWriteBooksThanAverageNumber();
 
+    }
+
+    private void printAuthorsWhoWriteBooksThanAverageNumber() {
+        List<AuthorDto> authorsMoreThanAverageBooks = authorBo.getAuthorsMoreThanAverageBooks();
+        System.out.println(authorsMoreThanAverageBooks.size());
+        for (AuthorDto author:authorsMoreThanAverageBooks) {
+            System.out.println("author "+author.getName());
+        }
     }
 
     private void setTableValues() {
@@ -233,10 +242,6 @@ public class MainFormController {
         authorBo.deleteAuthor(value);
     }
 
-    @FXML
-    void deleteBookButtonOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void increaseButtonOnAction(ActionEvent event) {

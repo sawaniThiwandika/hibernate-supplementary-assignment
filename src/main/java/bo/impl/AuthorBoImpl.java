@@ -76,4 +76,21 @@ public class AuthorBoImpl implements AuthorBo {
         session.close();
         return counts;
     }
+
+    @Override
+    public List<AuthorDto> getAuthorsMoreThanAverageBooks() {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        List<   AuthorDto> list = new ArrayList<>();
+        Transaction transaction = session.beginTransaction();
+        List<Author> authorsMoreThanAverageBooks = authorDao.getAuthorsMoreThanAverageBooks(session);
+        for (Author author:authorsMoreThanAverageBooks
+        ) {
+            list.add(new AuthorDto(author.getId(),author.getName(),author.getCountry()));
+
+
+        }
+        transaction.commit();
+        session.close();
+        return list;
+    }
 }

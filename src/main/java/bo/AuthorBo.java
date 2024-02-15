@@ -10,4 +10,5 @@ public interface AuthorBo {
     public boolean deleteAuthor(int value);
     public AuthorDto searchAuthor(int id);
     public List<Object[]> getCounts();
+    public  List<AuthorDto> getAuthorsMoreThanAverageBooks();
 }
