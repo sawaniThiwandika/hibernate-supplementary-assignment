@@ -125,7 +125,7 @@ public class MainFormController {
         List<AuthorDto> authorsMoreThanAverageBooks = authorBo.getAuthorsMoreThanAverageBooks();
         System.out.println(authorsMoreThanAverageBooks.size());
         for (AuthorDto author:authorsMoreThanAverageBooks) {
-            System.out.println("author "+author.getName());
+            System.out.println("author who write more than average "+author.getName());
         }
     }
 
