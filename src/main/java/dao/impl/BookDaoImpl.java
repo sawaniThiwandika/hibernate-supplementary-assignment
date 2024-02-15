@@ -48,7 +48,18 @@ public class BookDaoImpl implements BookDao {
     @Override
     public double getAveragePrice(Session session) {
        String hql="SELECT AVG(price) FROM Book ";
-        Query<Double> query = session.createQuery(hql, Double.class);
-        return query.list().get(0);
+       Query<Double> query = session.createQuery(hql, Double.class);
+       return query.list().get(0);
+    }
+
+    @Override
+    public List<Book> filterByCountry(Session session,String country) {
+        String hql="SELECT b FROM Book b JOIN b.author a WHERE a.country=:value ";
+        Query<Book> query = session.createQuery(hql, Book.class);
+        query.setParameter("value", country);
+        List<Book> list = query.list();
+
+
+        return list ;
     }
 }

@@ -9,5 +9,5 @@ public interface AuthorBo {
     public List<AuthorDto> getAuthors();
     public boolean deleteAuthor(int value);
     public AuthorDto searchAuthor(int id);
-    public long[] getCounts();
+    public List<Object[]> getCounts();
 }

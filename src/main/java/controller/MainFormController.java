@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainFormController {
@@ -95,6 +96,11 @@ public class MainFormController {
     @FXML
     private TableColumn<?, ?> colCount;
 
+    @FXML
+    private JFXComboBox<String> comboCountry;
+    @FXML
+    private Button searchByCountryBtn;
+
 
     @FXML
     private Button viewAuthorsBtn;
@@ -147,6 +153,28 @@ public class MainFormController {
             obListBooks.add(String.valueOf(dto.getId()));
         }
         comboBooks.setItems(obListBooks);
+        ObservableList<String> obListCountries = FXCollections.observableArrayList();
+        ArrayList<String> countries = new ArrayList<>();
+        for (AuthorDto dto : authorDtos) {
+            if (countries.size()==0){
+                obListCountries.add(String.valueOf(dto.getCountry()));
+                countries.add(dto.getCountry());
+            }
+            else {
+                for (int i = 0; i < countries.size(); i++) {
+                    if (!dto.getCountry().equals(countries.get(i))) {
+                        obListCountries.add(String.valueOf(dto.getCountry()));
+                        countries.add(dto.getCountry());
+                    }
+                }
+            }
+
+
+        }
+        comboCountry.setItems(obListCountries);
+
+
+
 
     }
     @FXML
@@ -184,12 +212,14 @@ public class MainFormController {
     @FXML
     void countButtonOnAction(ActionEvent event) {
         colCount.setVisible(true);
-        long[] counts = authorBo.getCounts();
+        List<Object[]> authorsWithCounts= authorBo.getCounts();
         obListAuthorTableValues.clear();
         List<AuthorDto> authorDtos = loadAuthors();
 
-        for (int i=0;i<counts.length;i++) {
-            obListAuthorTableValues.add(new AuthorTm(authorDtos.get(i).getId(),authorDtos.get(i).getName(),authorDtos.get(i).getCountry(), counts[i]));
+        for (int i=0;i<authorsWithCounts.size();i++) {
+            Author author= (Author) authorsWithCounts.get(i)[0];
+            long count= (long) authorsWithCounts.get(i)[1];
+            obListAuthorTableValues.add(new AuthorTm(author.getId(),author.getName(),author.getCountry(),count));
         }
         tableAuthor.setItems(obListAuthorTableValues);
         tableAuthor.refresh();
@@ -250,7 +280,7 @@ public class MainFormController {
 
     public void saveBookBtnOnAction(ActionEvent actionEvent) {
         String bookNameText = txtBookName.getText();
-       int  authorId = Integer.parseInt(comboAuthors.getValue());
+        int  authorId = Integer.parseInt(comboAuthors.getValue());
         String authorNameText = txtAuthorName.getText();
         String countryText = txtAuthorCountry.getText();
         int yearText = Integer.parseInt(txtBookYear.getText());
@@ -275,5 +305,21 @@ public class MainFormController {
             obListBookTableValues.add(new BookTm(dto.getId(),dto.getName(),dto.getYear(),dto.getPrice()));
         }
         tableBooks.setItems(obListBookTableValues);
+    }
+
+    public void searchByCountryButtonOnAction(ActionEvent actionEvent) {
+        String countryValue = comboCountry.getValue();
+        List<BookDto> bookDtos = bookBo.filterByCountry(countryValue);
+        System.out.println("size"+bookDtos.size());
+        obListBookTableValues.clear();
+        for (BookDto dto : bookDtos) {
+            obListBookTableValues.add(new BookTm(dto.getId(),dto.getName(),dto.getYear(),dto.getPrice()));
+        }
+        tableBooks.setItems(obListBookTableValues);
+
+    }
+
+    public void ComboBookOnAction(ActionEvent actionEvent) {
+
     }
 }

@@ -42,18 +42,12 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public long[] getCounts(Session session) {
-        String hql = "SELECT count(id) FROM Book GROUP BY author.id ";
-        Query<Long> query = session.createQuery(hql, Long.class);
-        List<Long> list = query.list();
+    public List<Object[]> getCounts(Session session) {
 
-        long [] counts= new long [list.size()];
-     for (int i=0;i<list.size();i++){
-
-         counts[i]= list.get(i);
-     }
-
-
-        return counts;
+        String hql="SELECT a,COUNT(b.id) FROM Book b JOIN b.author a GROUP BY a.id";
+        Query<Object[]> query = session.createQuery(hql, Object[].class);
+        List<Object[]> list =query.getResultList();
+        return list;
     }
+
 }

@@ -12,4 +12,5 @@ public interface BookDao {
     public List<Book> getAllAfter2010(Session session);
     public boolean increasePrice(int id, Session session);
     public double getAveragePrice(Session session);
+    public List<Book>  filterByCountry(Session session,String country);
 }

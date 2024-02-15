@@ -10,8 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="648.0" prefWidth="844.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+<AnchorPane prefHeight="676.0" prefWidth="929.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
       <TableView fx:id="tableAuthor" layoutX="21.0" layoutY="424.0" prefHeight="200.0" prefWidth="371.0">
         <columns>
@@ -21,7 +20,7 @@
             <TableColumn fx:id="colCount" prefWidth="61.5999755859375" text="Count" />
         </columns>
       </TableView>
-      <TableView fx:id="tableBooks" layoutX="481.0" layoutY="424.0" prefHeight="200.0" prefWidth="304.0">
+      <TableView fx:id="tableBooks" layoutX="479.0" layoutY="454.0" prefHeight="200.0" prefWidth="304.0">
         <columns>
           <TableColumn fx:id="colBookId" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="colBookName" prefWidth="75.0" text="Name" />
@@ -29,7 +28,7 @@
             <TableColumn fx:id="colBookPrice" prefWidth="75.0" text="Price" />
         </columns>
       </TableView>
-      <Line endX="-12.000030517578125" endY="572.8928833007812" layoutX="456.0" layoutY="80.0" startX="-23.600006103515625" startY="-80.0" />
+      <Line endX="-16.0" endY="596.0" layoutX="456.0" layoutY="80.0" startX="-23.600006103515625" startY="-80.0" />
       <Label layoutX="136.0" layoutY="34.0" prefHeight="18.0" prefWidth="150.0" text="Author">
          <font>
             <Font name="System Bold" size="28.0" />
@@ -41,25 +40,30 @@
          </font>
       </Label>
       <TextField fx:id="txtAuthorName" layoutX="33.0" layoutY="102.0" promptText="Enter name" style="-fx-background-color: rgb(250, 203, 234);" />
-      <JFXComboBox fx:id="comboBooks" layoutX="680.0" layoutY="168.0" prefHeight="26.0" prefWidth="139.0" promptText=" BOOK ID" />
-      <JFXComboBox fx:id="comboAuthors" layoutX="48.0" layoutY="169.0" onAction="#comboAuthorOnAction" prefHeight="26.0" prefWidth="139.0" promptText="Author ID" />
+      <JFXComboBox fx:id="comboBooks" layoutX="748.0" layoutY="156.0" onAction="#ComboBookOnAction" prefHeight="26.0" prefWidth="139.0" promptText=" BOOK ID" />
+      <JFXComboBox fx:id="comboAuthors" layoutX="38.0" layoutY="194.0" onAction="#comboAuthorOnAction" prefHeight="26.0" prefWidth="139.0" promptText="Author ID" />
       <TextField fx:id="txtBookName" layoutX="463.0" layoutY="115.0" promptText="Enter name" style="-fx-background-color: rgb(250, 203, 234);" />
       <TextField fx:id="txtBookYear" layoutX="463.0" layoutY="156.0" promptText="Enter Year" style="-fx-background-color: rgb(250, 203, 234);" />
       <TextField fx:id="txtBookPrice" layoutX="463.0" layoutY="195.0" promptText="Enter Price" style="-fx-background-color: rgb(250, 203, 234);" />
-      <Label layoutX="38.0" layoutY="239.0" prefHeight="18.0" prefWidth="74.0" text="Books count" />
-      <Label fx:id="labelCount" layoutX="136.0" layoutY="235.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #D988B9;" />
-      <Label layoutX="668.0" layoutY="102.0" prefHeight="18.0" prefWidth="150.0" text="Average price Today" />
-      <Label fx:id="labelPrice" layoutX="668.0" layoutY="124.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #D988B9;" />
-      <Button fx:id="countBtn" layoutX="259.0" layoutY="341.0" mnemonicParsing="false" onAction="#countButtonOnAction" prefHeight="26.0" prefWidth="139.0" text="View Book count vise" />
+      <Label layoutX="743.0" layoutY="93.0" prefHeight="18.0" prefWidth="150.0" text="Average price Today" />
+      <Label fx:id="labelPrice" layoutX="744.0" layoutY="120.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #D988B9;" />
+      <Button fx:id="countBtn" layoutX="240.0" layoutY="341.0" mnemonicParsing="false" onAction="#countButtonOnAction" prefHeight="26.0" prefWidth="182.0" text="View Book count with authors" />
       <Button fx:id="saveAuthorBtn" layoutX="29.0" layoutY="341.0" mnemonicParsing="false" onAction="#saveAuthorBtnOnAction" prefHeight="26.0" prefWidth="91.0" text="Save Author" />
-      <Button fx:id="deleteAuthorBtn" layoutX="142.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteAuthorBtnOnAction" prefHeight="26.0" prefWidth="91.0" text="delete author" />
-      <Button fx:id="saveBookBtn" layoutX="473.0" layoutY="271.0" mnemonicParsing="false" onAction="#saveBookBtnOnAction" prefHeight="26.0" prefWidth="91.0" text="Save book" />
-      <Button fx:id="deleteBookBtn" layoutX="726.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteBookButtonOnAction" prefHeight="26.0" prefWidth="91.0" text="delete" />
-      <Button fx:id="increase" layoutX="240.0" layoutY="169.0" mnemonicParsing="false" onAction="#increaseButtonOnAction" prefHeight="26.0" prefWidth="139.0" text="increase price " />
+      <Button fx:id="deleteAuthorBtn" layoutX="137.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteAuthorBtnOnAction" prefHeight="26.0" prefWidth="91.0" text="delete author" />
+      <Button fx:id="saveBookBtn" layoutX="639.0" layoutY="378.0" mnemonicParsing="false" onAction="#saveBookBtnOnAction" prefHeight="26.0" prefWidth="91.0" text="Save book" />
+      <Button fx:id="searchByCountryBtn" layoutX="639.0" layoutY="277.0" mnemonicParsing="false" onAction="#searchByCountryButtonOnAction" prefHeight="26.0" prefWidth="150.0" text="search books By Country" />
+      <Button fx:id="increase" layoutX="216.0" layoutY="207.0" mnemonicParsing="false" onAction="#increaseButtonOnAction" prefHeight="26.0" prefWidth="182.0" text="increase price of  books" />
       <Button fx:id="viewAuthorsBtn" layoutX="38.0" layoutY="284.0" mnemonicParsing="false" onAction="#viewAuthorsBtnOnAction" prefHeight="26.0" prefWidth="139.0" text="view Authors" />
       <TextField fx:id="txtAuthorCountry" layoutX="211.0" layoutY="102.0" promptText="Enter country" style="-fx-background-color: rgb(250, 203, 234);" />
-      <Button fx:id="after2010Btn" layoutX="481.0" layoutY="341.0" mnemonicParsing="false" onAction="#after2010BtnOnAction" prefHeight="26.0" prefWidth="150.0" text="View books After 2010" />
-      <Label layoutX="461.0" layoutY="235.0" prefHeight="26.0" prefWidth="304.0" text=" select a authorID  in author side to save a book!!!" />
-      <Label layoutX="36.0" layoutY="143.0" prefHeight="26.0" prefWidth="304.0" text=" select a authorID  in author side to increase price!!!" />
+      <Button fx:id="after2010Btn" layoutX="469.0" layoutY="378.0" mnemonicParsing="false" onAction="#after2010BtnOnAction" prefHeight="26.0" prefWidth="150.0" text="View books After 2010" />
+      <Label layoutX="467.0" layoutY="233.0" prefHeight="26.0" prefWidth="304.0" text="* select a authorID  in author side to save a book!!!">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="31.0" layoutY="168.0" prefHeight="26.0" prefWidth="304.0" text=" select a authorID  in author side to increase price!!!">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Label>
+      <JFXComboBox fx:id="comboCountry" layoutX="469.0" layoutY="277.0" prefHeight="26.0" prefWidth="150.0" promptText="Author's Country" />
    </children>
 </AnchorPane>

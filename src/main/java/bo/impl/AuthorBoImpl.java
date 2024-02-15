@@ -68,10 +68,10 @@ public class AuthorBoImpl implements AuthorBo {
     }
 
     @Override
-    public long[] getCounts() {
+    public List<Object[]> getCounts() {
         Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
         Transaction transaction = session.beginTransaction();
-        long[] counts = authorDao.getCounts(session);
+        List<Object[]> counts = authorDao.getCounts(session);
         transaction.commit();
         session.close();
         return counts;

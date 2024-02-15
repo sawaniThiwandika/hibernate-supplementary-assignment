@@ -87,4 +87,17 @@ public class BookBoImpl implements BookBo {
         return averagePrice;
 
     }
+
+    @Override
+    public List<BookDto> filterByCountry(String country) {
+        Session session = FactoryConfiguration.getFactoryConfiguration().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Book> books = bookDao.filterByCountry(session, country);
+        List<BookDto> dtos=new ArrayList<>();
+        for (Book book:books
+             ) {
+            dtos.add(new BookDto(book.getId(),book.getAuthor().getId(),book.getAuthor().getName(),book.getAuthor().getCountry(),book.getTitle(),book.getPublicationYear(),book.getPrice()));
+        }
+        return dtos;
+    }
 }

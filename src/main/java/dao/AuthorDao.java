@@ -10,5 +10,6 @@ public interface AuthorDao {
     public List<Author> getAll(Session session);
     public boolean  delete(int value, Session session);
     public Author search(int id, Session session);
-public long[] getCounts(Session session);
+public List<Object[]> getCounts(Session session);
+
 }
